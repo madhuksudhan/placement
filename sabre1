@@ -1,0 +1,46 @@
+/*
+WAP to print the longest substring with distinct characters and its length in a given string.
+*/
+
+#include<string>
+#include <iostream>
+using namespace std;
+
+int count(char chr, string str2){
+    int count=0;
+    for(int i=0;i<str2.length();i++){
+        if(str2[i]==chr)count++;
+    }
+    return count;
+}
+
+bool check(string str1){
+    
+    int n1 = str1.length();
+    for(int i=0;i<n1;i++){
+        int k=count(str1[i],str1);
+        if(k>1)return false;
+    }
+    
+    return true;
+}
+
+int main() {
+    string str;
+    cin>>str;
+    int n=str.length();
+    bool done=0;
+    for(int i=n;i>=1;i--){
+        for(int j=0;j<=(n-i);j++){
+            //cout<<str.substr(j,i);
+            if(check(str.substr(j,i))){
+                cout<<i<<endl;cout<<str.substr(j,i);done=1;
+                break;
+            }
+        }
+        if(done)break;
+    }
+    
+    
+    return 0;
+}
