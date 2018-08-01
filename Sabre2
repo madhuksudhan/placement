@@ -1,0 +1,43 @@
+/*
+WAP to return the most repeated character in a string.
+If two characters are repeated the same number of times, return the lexicograhically smaller character between them.
+*/
+
+
+
+
+#include<string>
+#include <iostream>
+using namespace std;
+
+int count(char chr, string str2){
+    int count=0;
+    for(int i=0;i<str2.length();i++){
+        if(str2[i]==chr)count++;
+    }
+    return count;
+}
+
+int main() {
+    string str;
+    cin>>str;
+    int n=str.length();
+    bool done=0;
+    char chrr=str[0];
+    int maxx=count(chrr,str);
+    for(int i=1;i<n;i++){
+        
+        if(count(str[i], str)>maxx){
+            maxx=count(str[i], str);
+            chrr=str[i];
+        }
+        else if(count(str[i], str)==maxx){
+            chrr=str[i]<chrr?str[i]:chrr;
+        }
+    }
+    
+    cout<<chrr<<maxx;
+    
+    
+    return 0;
+}
